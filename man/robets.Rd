@@ -7,9 +7,9 @@
 robets(y, model = "ZZZ", damped = NULL, alpha = NULL, beta = NULL,
   gamma = NULL, phi = NULL, additive.only = FALSE, lambda = NULL,
   lower = c(rep(1e-04, 3), 0.8), upper = c(rep(0.9999, 3), 0.98),
-  opt.crit = c("tau2", "roblik", "lik", "mse", "amse", "sigma", "mae"),
+  opt.crit = c("roblik", "tau2", "lik", "mse", "amse", "sigma", "mae"),
   bounds = c("both", "usual", "admissible"), ic = c("robaicc", "robaic",
-  "robbic", "aicc", "bic", "aic"), use.initial.values = FALSE,
+  "robbic", "aicc", "bic", "aic"), use.initial.values = TRUE,
   opt.initial.values = FALSE, rob.start.initial.values = TRUE,
   opt.sigma0 = FALSE, k = 3, nmse = 1, ...)
 }
@@ -36,13 +36,13 @@ robets(y, model = "ZZZ", damped = NULL, alpha = NULL, beta = NULL,
 
 \item{upper}{Upper bounds for the parameters (alpha, beta, gamma, phi)}
 
-\item{opt.crit}{Optimization criterion. One of "\link{tau2}" (Tau squared error of the residuals, default), "roblik" (Robust Log-likelihood), "mse" (Mean Square Error), "amse" (Average MSE over first \code{nmse} forecast horizons), "sigma" (Standard deviation of residuals), "mae" (Mean of absolute residuals), or "lik" (Log-likelihood).}
+\item{opt.crit}{Optimization criterion. One of "roblik" (Robust Log-likelihood, default), "\link{tau2}" (Tau squared error of the residuals), "mse" (Mean Square Error), "amse" (Average MSE over first \code{nmse} forecast horizons), "sigma" (Standard deviation of residuals), "mae" (Mean of absolute residuals), or "lik" (Log-likelihood).}
 
 \item{bounds}{Type of parameter space to impose: \code{"usual"} indicates all parameters must lie between specified lower and upper bounds; \code{"admissible"} indicates parameters must lie in the admissible space; \code{"both"} (default) takes the intersection of these regions.}
 
 \item{ic}{Information criterion to be used in model selection.}
 
-\item{use.initial.values}{If \code{TRUE} and \code{model} is of class \code{"robets"}, then the initial values in the model are also not re-estimated.}
+\item{use.initial.values}{If \code{TRUE} (default) and \code{model} is of class \code{"robets"}, then the initial values in the model are also not re-estimated.}
 
 \item{opt.initial.values}{If \code{FALSE} (default) a robust heuristic is used for chosing the initial values. If \code{TRUE}  the initial values are part of the problem to optimize \code{opt.crit}.  Neglected if \code{use.initial.values} is \code{TRUE} and \code{model} is of class \code{"robets"}.}
 
