@@ -129,7 +129,7 @@ void RobetsTargetFunction::eval(const double* p_par, int p_par_length) {
 	if(optGamma) this->gamma = par[j++];
 	if(optPhi) this->phi = par[j++];
 	std::ofstream outfile;
-	outfile.open("/home/molchen/fusionskye/machine_learning/robets/robusthw.log");
+	outfile.open("/home/molchen/fusionskye/machine_learning/robets/robusthw.log", std::ios::out | std::ios::app);
   outfile << "alpha: " << this->alpha << " beta: " <<this->beta <<" gamma: "<< this->gamma <<" phi: " << this->phi << std::endl;
   outfile.close();
 	
@@ -460,7 +460,7 @@ void RobetsTargetFunction::robetscalc(){
       roblik = n*log(n*tau2); 
       
       std::ofstream outfile;
-      outfile.open("/home/molchen/fusionskye/machine_learning/robets/robusthw.log");
+      outfile.open("/home/molchen/fusionskye/machine_learning/robets/robusthw.log", std::ios::out | std::ios::app);
       outfile << "tau2: " << tau2 << " roblik: " << roblik << std::endl;
       outfile.close();
     }else{ // errortype = MULT
