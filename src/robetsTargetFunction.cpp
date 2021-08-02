@@ -4,6 +4,10 @@
 
 #include <R_ext/Print.h>
 
+#include <fstream>
+
+#include <iostream>
+
 const int NONE = 0;
 const int ADD = 1;
 const int MULT = 2;
@@ -95,6 +99,11 @@ void RobetsTargetFunction::eval(const double* p_par, int p_par_length) {
 	bool equal=true;
   
 	// Check if the parameter configuration has changed, if not, just return.
+	
+	std::ofstream outfile;
+	outfile.open("/home/molchen/fusionskye/machine_learning/robets/robusthw.log");
+	outfile << "hello world C++";
+	outfile.close();
 	if((unsigned)p_par_length != this->par.size()) {
 		equal=false;
 	} else {

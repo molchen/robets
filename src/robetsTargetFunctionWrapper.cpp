@@ -11,6 +11,9 @@
 
 #include "robetsTargetFunction.h"
 
+#include <fstream>
+
+#include <iostream>
 // This function initializes all the parameters, constructs an
 // object of type RobetsTargetFunction and adds an external pointer
 // to this object with name "robets.xptr"
@@ -90,6 +93,7 @@ double targetFunctionRobetsNelderMead(int n, double *par, void *ex)
 	RobetsTargetFunction* sp = (RobetsTargetFunction*) ex;
 
 	sp->eval(par, n);
+	
 	return sp->getObjVal();
 
 }
