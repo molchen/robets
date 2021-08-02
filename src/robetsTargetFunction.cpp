@@ -18,6 +18,7 @@ const double NA  = -99999.0;
 
 const double LAMBDA_SIGMA = 0.1;
 
+
 void RobetsTargetFunction::init(std::vector<double> & p_y, int p_errortype,
 		int p_trendtype, int p_seasontype, bool p_damped,
 		std::vector<double> & p_lower, std::vector<double> & p_upper, std::string p_opt_crit,
@@ -100,10 +101,9 @@ void RobetsTargetFunction::eval(const double* p_par, int p_par_length) {
   
 	// Check if the parameter configuration has changed, if not, just return.
 	
-	std::ofstream outfile;
-	outfile.open("/home/molchen/fusionskye/machine_learning/robets/robusthw.log");
-	outfile << "hello world C++";
-	outfile.close();
+
+	//outfile << "hello world C++";
+	
 	if((unsigned)p_par_length != this->par.size()) {
 		equal=false;
 	} else {
@@ -128,7 +128,11 @@ void RobetsTargetFunction::eval(const double* p_par, int p_par_length) {
 	if(optBeta) this->beta = par[j++];
 	if(optGamma) this->gamma = par[j++];
 	if(optPhi) this->phi = par[j++];
-
+	std::ofstream outfile;
+	outfile.open("/home/molchen/fusionskye/machine_learning/robets/robusthw.log");
+  outfile << "alpha: " << this->alpha << " beta: " <<this->beta <<" gamma: "<< this->gamma <<" phi: " << this->phi << std::endl;
+  outfile.close();
+	
 	if(!this->check_params()) {
 		this->objval = R_PosInf;
 		return;
@@ -454,6 +458,11 @@ void RobetsTargetFunction::robetscalc(){
     if(errortype == ADD){
       tau2 = computeTau2(e);
       roblik = n*log(n*tau2); 
+      
+      std::ofstream outfile;
+      outfile.open("/home/molchen/fusionskye/machine_learning/robets/robusthw.log");
+      outfile << "tau2: " << tau2 << " roblik: " << roblik << std::endl;
+      outfile.close();
     }else{ // errortype = MULT
       tau2 = computeTau2(e); 
       roblik = n*log(n*tau2)+2*n*log(median(absYpred));  //  n*log(n*tau2)+2*lik2;  // 
