@@ -305,7 +305,7 @@ robpegelsresid.C <- function(y,m,initstate,errortype,trendtype,seasontype,damped
 
 robetsmodel <- function(y, errortype, trendtype, seasontype, damped,
                      alpha=NULL, beta=NULL, gamma=NULL, phi=NULL,
-                     lower, upper, opt.crit, bounds, maxit=2000, control=NULL, seed=NULL, trace=FALSE, 
+                     lower, upper, opt.crit, bounds, maxit=2000, control=NULL, seed=NULL, trace=TRUE, 
                      opt.initial.values = TRUE,rob.start.initial.values=TRUE,opt.sigma0=FALSE, k=NULL,nmse)
 {
   tsp.y <- tsp(y)
