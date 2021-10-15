@@ -125,6 +125,27 @@ RcppExport SEXP robetsNelderMead(SEXP p_var, SEXP p_env, SEXP p_abstol,
 
 	double (*funcPtr)(int n, double *par, void *ex) = targetFunctionRobetsNelderMead;
 
+	std::ofstream outfile;
+	outfile.open("/home/molchen/fusionskye/machine_learning/robets/robetsNelderMead.log", std::ios::out | std::ios::app);
+	outfile 
+	<< "dpar.size(): " << dpar.size() 
+	<< "dpar.begin(): " << dpar.begin() 
+	<< "opar.begin(): " << opar.begin() 
+	<< " &Fmin: " << &Fmin 
+  << " funcPtr " << funcPtr
+  << " &fail: " << &fail
+  << " abstol: " << abstol
+  << " intol " << intol
+  << " sp: " << sp
+  << " alpha: " << alpha
+  << " beta: " << beta
+  << " gamma: " << gamma
+  << " trace: " << trace
+  << " &fncount: " << &fncount
+  << " maxit: " << maxit
+	<< std::endl;
+	outfile.close();
+	
 	nmmin(dpar.size(), dpar.begin(), opar.begin(), &Fmin, funcPtr,
 			&fail, abstol, intol, sp, alpha, beta, gamma, trace, &fncount, maxit);
 
