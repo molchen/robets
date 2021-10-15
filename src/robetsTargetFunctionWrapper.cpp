@@ -128,9 +128,10 @@ RcppExport SEXP robetsNelderMead(SEXP p_var, SEXP p_env, SEXP p_abstol,
 	std::ofstream outfile;
 	outfile.open("/home/molchen/fusionskye/machine_learning/robets/robetsNelderMead.log", std::ios::out | std::ios::app);
 	outfile 
-	<< "dpar.size(): " << dpar.size() 
-	<< "dpar.begin(): " << dpar.begin() 
-	<< "opar.begin(): " << opar.begin() 
+	<< " dpar.size(): " << dpar.size() 
+	<< " &dpar[0]: " << &dpar[0]
+  << " dpar[0]: " << dpar[0]
+	<< " opar.begin(): " << opar.begin() 
 	<< " &Fmin: " << &Fmin 
   << " funcPtr " << funcPtr
   << " &fail: " << &fail
@@ -146,7 +147,7 @@ RcppExport SEXP robetsNelderMead(SEXP p_var, SEXP p_env, SEXP p_abstol,
 	<< std::endl;
 	outfile.close();
 	
-	nmmin(dpar.size(), dpar.begin(), opar.begin(), &Fmin, funcPtr,
+	nmmin(dpar.size(), &dpar[0], &opar[0], &Fmin, funcPtr,
 			&fail, abstol, intol, sp, alpha, beta, gamma, trace, &fncount, maxit);
 
 	return Rcpp::List::create(Rcpp::Named("value") = Fmin,
